@@ -105,7 +105,7 @@ esac
 ```
 ![캡처14](https://user-images.githubusercontent.com/50174803/128693051-4a5a91d8-3c6f-4125-b8b0-0499698b3db7.jpg)
 
-## exam10.sh
+## exam10.sh - case 
 ```
 #!/bin/bash
 cat << END
@@ -126,4 +126,94 @@ esac
 exit 0
 ```
 ![캡처15](https://user-images.githubusercontent.com/50174803/128693379-d6928768-7ff4-40e9-8c1f-b95b35a7499e.jpg)
+
+## exam11.sh -if 
+```
+#!/bin/bash
+echo -n "Input a directory name :"; read answer
+if [ -d $answer ]; then
+        ls $answer > /tmp/$(date +%Y-%m-%d)
+        cat /tmp/$(date +%Y-%m-%d)
+        exit 0
+else
+        echo "It's not a directory"
+        exit 1
+fi
+```
+![캡처16](https://user-images.githubusercontent.com/50174803/128693726-b6da173e-f02a-47ac-8a01-95383932736a.jpg)
+
+## exam12.sh - while, until
+```
+#!/bin/bash
+num=1
+while [ $num -le 5 ]
+do
+        echo "Number :$num"
+        (( num++ ))
+done
+echo "== While exit =="
+a=1
+until [ $a -gt 5 ]
+do
+        echo "Number :$a"
+        (( a++ ))
+done
+echo "== Until exit =="
+```
+![캡처17](https://user-images.githubusercontent.com/50174803/128694115-6b0fe48e-8245-494a-a46a-2bc8143b3e58.jpg)
+
+## exam13.sh
+```
+#!/bin/bash
+cat << END
+Description: Create a User Account
+Author: "sangwon lee" <lee2155507@gmail.com>
+END
+echo -n "New Username: "; read username
+while getent passwd $username &> /dev/null
+do
+        echo "Sorry. That account $username is already taken.
+        Please pick a different username"
+        echo -n "New Username :"
+        read username
+done
+sudo useradd -m -s /bin/bash $username
+```
+![캡처18](https://user-images.githubusercontent.com/50174803/128695051-cd4811cd-f01b-41cf-9f9e-900efbfce0ea.jpg)
+
+
+## exam14.sh
+```
+#!/bin/bash
+num=0
+while [ $num -lt 5 ]
+do
+        echo "Number : $num"
+        (( num++ ))
+        if [ $num == 2 ]; then
+                break
+        fi
+done
+```
+
+![캡처19](https://user-images.githubusercontent.com/50174803/128695297-f73e775b-a795-4b59-a5c6-bc2d2dd2e499.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
