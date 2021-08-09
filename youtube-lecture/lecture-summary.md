@@ -42,7 +42,112 @@ ls a.txt 는 에러 메세지가 뜬다.
 
 이를 ls a.txt 2>error.txt 를 이용해
 error.txt에 에러 내용을 파일로 받도록 할 수 있다.
-
-
 ```
+![캡처1](https://user-images.githubusercontent.com/50174803/128683592-fcc88bd2-d430-472d-a5ac-4235e2396fa0.jpg)
+
+## Pipeline
+```
+명령의 실행 결과를 다음 명령의 입력으로 전달
+
+ls -l | wc -l
+
+ls -l | grep k | wc -l
+```
+![캡처2](https://user-images.githubusercontent.com/50174803/128683806-b103cfa6-46be-44f2-9227-7c265f373320.jpg)
+
+## exam1.sh
+```
+#!/bin/bash
+echo "================="
+date +%Y-%m-%d
+echo "================="
+df -h
+```
+![캡처3](https://user-images.githubusercontent.com/50174803/128684181-6ae501b9-0a24-48e4-b223-0b345b45faa6.jpg)
+
+## exam2.sh
+```
+#!/bin/bash
+#: Author      : "sangwon lee" <lee2155507@gmail.com>
+#: Description : print list current directory
+ls > /tmp/$(date +%Y-%m-%d).txt
+cat /tmp/$(date +%Y-%m-%d).txt
+```
+![캡처4](https://user-images.githubusercontent.com/50174803/128684593-1b8449f0-9b34-4c4e-9106-06cfaedd1bf3.jpg)
+
+## exam3.sh 
+```
+#!/bin/bash
+#: Author      : "sangwon lee"
+#: Description : Print /var directory Usage
+echo "[ /var directory ]"
+echo "==================="
+date +%Y-%m-%d
+echo "==================="
+du -sh /var 2> /dev/null
+echo
+```
+![캡처5](https://user-images.githubusercontent.com/50174803/128684909-9c749a6d-b944-4230-acd1-264a2c9ffed3.jpg)
+
+## exam4.sh - parameter
+```
+#!/bin/bash
+# Usage : exam3.sh arg1 arg2 arg3
+echo "The Script name    : $0"
+echo "The First Args     : $1"
+echo "The Second Args    : $2"
+echo "The Third Args     : $3"
+echo "The number of Args : $#"
+echo "The list of Args   : $@"
+echo "The list of Args   : $*"
+```
+![캡처6](https://user-images.githubusercontent.com/50174803/128685378-8defc7c6-c678-44d9-8788-78e413e692cc.jpg)
+
+## exam5.sh
+```
+#!/bin/bash
+echo "[$1 directory]"
+echo "==============="
+date +%Y-%m-%d
+echo "==============="
+du -sh $1 2> /dev/null
+echo
+```
+![캡처7](https://user-images.githubusercontent.com/50174803/128685717-8f34d195-3d73-4f9a-ae47-2b1c0661789b.jpg)
+
+## exam6.sh
+```
+#!/bin/bash
+#: Usage : exam6.sh
+echo "[$1 Directory list up]"
+search=`/tmp/$(date +%Y-%m-%d).txt 2> /dev/null`
+ls $1 > search
+echo "==== $1 Search ===="
+cat search
+echo
+ls $1 | wc -l > count.txt
+cnt=`cat count.txt`
+echo "Total $1 numbers : $cnt"
+```
+![캡처8](https://user-images.githubusercontent.com/50174803/128686885-3eb314df-876e-4995-9bc8-4e5f9b4cf459.jpg)
+
+## echo -n
+```
+echo "hello sangwon"
+
+echo -n "hello sangwon"
+```
+
+## echo -e 
+```
+echo "hello\nlinux"
+
+echo -e "hello\nlinux"
+```
+
+## echo -n + read
+```
+echo -n "Your name:"; read name
+```
+![캡처9](https://user-images.githubusercontent.com/50174803/128687411-9df509e8-f65a-4717-a044-6aed3c7010b3.jpg)
 
