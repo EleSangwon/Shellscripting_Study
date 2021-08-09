@@ -42,7 +42,63 @@ ls a.txt 는 에러 메세지가 뜬다.
 
 이를 ls a.txt 2>error.txt 를 이용해
 error.txt에 에러 내용을 파일로 받도록 할 수 있다.
-
-
 ```
+![캡처1](https://user-images.githubusercontent.com/50174803/128683592-fcc88bd2-d430-472d-a5ac-4235e2396fa0.jpg)
 
+## Pipeline
+```
+명령의 실행 결과를 다음 명령의 입력으로 전달
+
+ls -l | wc -l
+
+ls -l | grep k | wc -l
+```
+![캡처2](https://user-images.githubusercontent.com/50174803/128683806-b103cfa6-46be-44f2-9227-7c265f373320.jpg)
+
+## exam1.sh
+```
+#!/bin/bash
+echo "================="
+date +%Y-%m-%d
+echo "================="
+df -h
+```
+![캡처3](https://user-images.githubusercontent.com/50174803/128684181-6ae501b9-0a24-48e4-b223-0b345b45faa6.jpg)
+
+## exam2.sh
+```
+#!/bin/bash
+#: Author      : "sangwon lee" <lee2155507@gmail.com>
+#: Description : print list current directory
+ls > /tmp/$(date +%Y-%m-%d).txt
+cat /tmp/$(date +%Y-%m-%d).txt
+```
+![캡처4](https://user-images.githubusercontent.com/50174803/128684593-1b8449f0-9b34-4c4e-9106-06cfaedd1bf3.jpg)
+
+## exam3.sh 
+```
+#!/bin/bash
+#: Author      : "sangwon lee"
+#: Description : Print /var directory Usage
+echo "[ /var directory ]"
+echo "==================="
+date +%Y-%m-%d
+echo "==================="
+du -sh /var 2> /dev/null
+echo
+```
+![캡처5](https://user-images.githubusercontent.com/50174803/128684909-9c749a6d-b944-4230-acd1-264a2c9ffed3.jpg)
+
+## exam4.sh - parameter
+```
+#!/bin/bash
+# Usage : exam3.sh arg1 arg2 arg3
+echo "The Script name    : $0"
+echo "The First Args     : $1"
+echo "The Second Args    : $2"
+echo "The Third Args     : $3"
+echo "The number of Args : $#"
+echo "The list of Args   : $@"
+echo "The list of Args   : $*"
+```
+![캡처6](https://user-images.githubusercontent.com/50174803/128685378-8defc7c6-c678-44d9-8788-78e413e692cc.jpg)
